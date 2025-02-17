@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {
+    StatusBar,
+    StyleSheet,
+    SafeAreaView,
+    View,
+} from 'react-native';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Do u  dick?</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <StatusBar style="auto"/>
+
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
+
 });

@@ -1,16 +1,27 @@
 import React, {useState} from 'react';
+import Header from "./components/Header";
+import ListItem from "./components/ListItem";
 import {
-    StatusBar,
     StyleSheet,
-    SafeAreaView,
-    View,
+    View, FlatList, Text,
 } from 'react-native';
 
 export default function App() {
-    return (
-        <View style={styles.container}>
-            <StatusBar style="auto"/>
+    const [listOfItems, setListOfItems] = useState([
+        {text: 'Купить молоко', index: 1 },
+        {text: 'Купить картошку', index: 2 },
+        {text: 'Купить яйца', index: 3 },
+        {text: 'Купить творог', index: 4 },
+    ])
 
+    return (
+        <View>
+            <Header/>
+            <View>
+                <FlatList data={listOfItems} renderItem={({ item }) => (
+                    <ListItem el={item} />
+                    )}/>
+            </View>
         </View>
     );
 }

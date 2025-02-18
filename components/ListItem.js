@@ -1,17 +1,17 @@
 import React from 'react';
 import {
     StyleSheet,
-    TouchableHighlight,
+    TouchableOpacity,
     Text,
 } from 'react-native';
 
-export default function ListItem({ el }) {
+export default function ListItem({ el, deleteHandler }) {
     return (
-        <TouchableHighlight>
+        <TouchableOpacity onPress={() => deleteHandler(el.key)}>
             <Text style={styles.text}>
                 {el.text}
             </Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
     );
 }
 
@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fafafa',
         borderWidth: 1,
         marginTop: 10,
-        width: '80%',
-        marginLeft: '10%'
+        width: '60%',
+        marginLeft: '20%'
     }
 
 });

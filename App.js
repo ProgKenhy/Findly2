@@ -1,50 +1,56 @@
-import React, {useState, useRef} from 'react';
-import Header from "./components/Header";
-import ListItem from "./components/ListItem";
-import Form from "./components/Form";
-import {
-    StyleSheet,
-    View, FlatList, StatusBar
-} from 'react-native';
+import React, {useState, useEffect, useCallback} from 'react';
+import {View, StyleSheet, StatusBar, Text} from 'react-native';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import {gStyle} from './styles/style'
+import Main from './components/Main'
+
+// Подгружаем шрифты
+const loadFonts = async () => {
+    await Font.loadAsync({
+        'mt-bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+        'mt-light': require('./assets/fonts/Montserrat-Light.ttf'),
+    });
+};
 
 export default function App() {
-    const [listOfItems, setListOfItems] = useState([
-        {text: 'Купить молоко', key: '1'},
-        {text: 'Купить картошку', key: '2'},
-        {text: 'Купить яйца', key: '3'},
-        {text: 'Купить творог', key: '4'},
-    ])
+    const [appIsReady, setAppIsReady] = useState(false);
 
-    const currentId = useRef(5);
+    useEffect(() => {
+        async function prepare() {
+            try {
+                await loadFonts();
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            } catch (e) {
+                console.warn(e);
+            } finally {
+                setAppIsReady(true);
+            }
+        }
 
-    const addHandler = (text) => {
-        setListOfItems((list) => {
-            return [
-                {text: text, key: String(currentId.current)},
-                ...list
-            ];
-        });
-        currentId.current += 1;
-    };
+        prepare();
+    }, []);
 
-    const deleteHandler = (key) => {
-        setListOfItems((list) => {
-            return list.filter(listOfItems => listOfItems.key != key)
-        });
+    const onLayoutRootView = useCallback(async () => {
+        if (appIsReady) {
+            await SplashScreen.hideAsync();
+        }
+    }, [appIsReady]);
+
+    if (!appIsReady) {
+        return null;
     }
 
     return (
-        <View>
-            <StatusBar style="auto"/>
-            <Header/>
-            <Form addHandler={addHandler} />
-            <View>
-                <FlatList data={listOfItems} renderItem={({item}) => (
-                    <ListItem el={item} deleteHandler={ deleteHandler}/>
-                )}/>
-            </View>
-        </View>
+        <Main/>
     );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    main: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
+});

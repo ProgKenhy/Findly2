@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useCallback} from 'react';
+import "@/global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import {View, StyleSheet, StatusBar, Text} from 'react-native';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {gStyle} from './styles/style'
-import Main from './components/Main'
+import MainStack from './navigate'
 
 // Подгружаем шрифты
 const loadFonts = async () => {
@@ -41,9 +43,7 @@ export default function App() {
         return null;
     }
 
-    return (
-        <Main/>
-    );
+    return <GluestackUIProvider mode="light"><MainStack/></GluestackUIProvider>;
 }
 
 const styles = StyleSheet.create({

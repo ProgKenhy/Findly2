@@ -1,4 +1,4 @@
-import { StyleSheet} from "react-native";
+import {StyleSheet} from "react-native";
 
 export const gStyle = StyleSheet.create({
     main: {
@@ -10,5 +10,9 @@ export const gStyle = StyleSheet.create({
         color: '#333',
         fontFamily: 'mt-bold',
         textAlign: 'center',
+    },
+    aText: {
+        fontSize: 15,
+        fontFamily: 'mt-light',
     }
 })

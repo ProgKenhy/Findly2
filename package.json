@@ -5,24 +5,42 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "android": "DARK_MODE=media expo start --android",
+    "ios": "DARK_MODE=media expo start --ios",
+    "web": "DARK_MODE=media expo start --web"
   },
   "dependencies": {
     "@expo/metro-runtime": "~4.0.1",
+    "@expo/vector-icons": "^14.0.4",
+    "@gluestack-ui/icon": "^0.1.25",
+    "@gluestack-ui/nativewind-utils": "^1.0.26",
+    "@gluestack-ui/overlay": "^0.1.20",
+    "@gluestack-ui/toast": "^1.0.9",
+    "@react-navigation/elements": "^2.2.5",
+    "@react-navigation/native": "^7.0.14",
+    "@react-navigation/native-stack": "^7.2.0",
+    "babel-plugin-module-resolver": "^5.0.2",
     "expo": "~52.0.33",
     "expo-font": "^13.0.3",
+    "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
+    "formik": "^2.4.6",
+    "nativewind": "^4.1.23",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.7",
+    "react-native-css-interop": "^0.1.22",
     "react-native-prompt": "^1.0.0",
+    "react-native-reanimated": "^3.16.7",
+    "react-native-safe-area-context": "^5.2.0",
+    "react-native-screens": "~4.4.0",
+    "react-native-svg": "^15.2.0",
     "react-native-web": "~0.19.13",
-    "expo-splash-screen": "~0.29.22"
+    "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "jscodeshift": "^0.15.2"
   },
   "private": true
 }
